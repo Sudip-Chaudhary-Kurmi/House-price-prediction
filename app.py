@@ -41,9 +41,16 @@ def About():
     st.write("""
     The dataset includes details such as the number of bedrooms, house size, and age, which help in estimating the price.
     """)
-    df = pd.read_csv('house_price_prediction_dataset.csv')
-    st.title("Dataset")
-    st.dataframe(df)
+    df1 = pd.read_csv('house_price_prediction_dataset.csv')
+    st.title("Raw Dataset")
+    st.dataframe(df1)
+
+    df2 = pd.read_csv('house_price_prediction_dataset.csv')
+    df2 = df2.drop(columns=["proximity_to_city_center", "neighborhood_quality", "lot_size"])
+    st.title("Cleaned Dataset")
+    st.dataframe(df2)
+
+
 
 # Prediction Section
 def prediction():
