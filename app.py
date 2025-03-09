@@ -19,8 +19,8 @@ st.markdown(
 
 # Sidebar navigation
 with st.sidebar:
-    choose = option_menu("App Gallery", ["Prediction", "About", "DataSet"],
-                         icons=['gear-wide', 'house', 'database-fill-add'],
+    choose = option_menu("App Gallery", ["Prediction", "About"],
+                         icons=['gear-wide', 'house'],
                          menu_icon="app-indicator", default_index=0)
 
 # About Section
@@ -41,13 +41,20 @@ def About():
     st.write("""
     The dataset includes details such as the number of bedrooms, house size, and age, which help in estimating the price.
     """)
+
+    # Load and display raw data
     df1 = pd.read_csv('house_price_prediction_dataset.csv')
     st.title("Raw Dataset")
+    st.write("""
+    This is raw dataset which contains extra columns which will not be used to predict price.""")
     st.dataframe(df1)
 
+    # Clean the data (remove unnecessary columns)
     df2 = pd.read_csv('house_price_prediction_dataset.csv')
     df2 = df2.drop(columns=["proximity_to_city_center", "neighborhood_quality", "lot_size"])
     st.title("Cleaned Dataset")
+    st.write("""
+    This is cleaned dataset after removing unnecessary columns.""")
     st.dataframe(df2)
 
 
@@ -85,16 +92,8 @@ def prediction():
         predicted_price = mlr.predict(user_input)
         st.header(f'Predicted House Price: ${predicted_price[0]:,.2f}')
 
-# Dataset Section
-def dataset():
-    df = pd.read_csv('house_price_prediction_dataset.csv')
-    st.title("Dataset")
-    st.dataframe(df)
-
 # Page Navigation Logic
 if choose == "About":
     About()
 elif choose == "Prediction":
     prediction()
-elif choose == "DataSet":
-    dataset()
