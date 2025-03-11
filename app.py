@@ -10,8 +10,20 @@ st.set_page_config(page_icon=":house:", page_title="House Price Prediction")
 st.markdown(
     """
     <style>
-    [data-testid="stSidebar"] { background-color: #1d2533; }
-    [data-testid="collapsedControl"] { display: none; }
+    /* Change sidebar background color */
+    [data-testid="stSidebar"] {
+        background-color: #1a1f2b; /* Dark Blue-Gray */
+    }
+
+    /* Change main page background color */
+    [data-testid="stAppViewContainer"] {
+        background-color: #0f172a; /* Deep Navy Blue */
+    }
+
+    /* Change text color for better visibility */
+    [data-testid="stAppViewContainer"], .stText, .stTitle {
+        color: #d1d5db; /* Light Grayish-Blue */
+    }
     </style>
     """,
     unsafe_allow_html=True
